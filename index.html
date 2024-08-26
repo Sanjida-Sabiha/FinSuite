@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="assets/img/fav-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Main Title -->
+    <title>FinSuite</title>
+    <!-- AOS Animation CSS -->
+     <link rel="stylesheet" href="assets/css/aos.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header Area Start Here -->
+    <header class="">
+        <div class="container">
+            <nav x-data="{ open: false }" class="">
+                <div class="flex justify-between py-7 items-center">
+                    <div>
+                        <a class="flex gap-2 items-center" href="index.html">
+                            <img class=" flex-shrink-0" src="assets/img/logo.svg" alt="logo">
+                        </a>
+                    </div>
+                    <!-- Menu button for mobile -->
+                    <div class="-mr-2 flex items-center lg:hidden">
+                        <button @click="open = !open" class="text-primaryColor focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="black">
+                            <path x-show="!open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                            <path x-show="open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" fill="black"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Desktop menu -->
+                    <div class="hidden lg:block" x-data="{ open: false }">
+                        <ul class="flex list-none">
+                            <li><a href="index.html" class="text-base font-Gilroy no-underline font-normal text-SecondaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500">Home</a></li>
+                            <li><a href="about.html" class="text-base font-Gilroy no-underline font-normal text-SecondaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500 pl-10">About us</a></li>
+                            <li><a href="blog.html" class="text-base font-Gilroy no-underline font-normal text-SecondaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500 pl-10">Blog</a></li>
+                            <li class="group flex items-center relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                                <a href="#" class="inline-flex items-center no-underline text-base font-Gilroy font-normal text-SecondaryColor hover:text-btnBg transition ease-in-out duration-500 pl-10"
+                                    @click.prevent="open = !open" :class="{ 'text-LavenderIndigo': open }">
+                                    Pages
+                                    <svg :class="{ 'rotate-180': open }" class="ml-2 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="11" height="6" fill="none" viewBox="0 0 11 6">
+                                        <path d="M1.5 1L5.5 5L9.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+
+                                <!-- Dropdown content  -->
+                                <ul id="dropdown" class="absolute left-9 top-6 w-48 py-2 list-none  bg-bg rounded-md hidden shadow-2xl z-10 group-hover:block" :class="{ 'block': open, 'hidden': !open }">
+                                    <!-- Dropdown items -->
+                                    <li>
+                                        <a href="blog-details.html" class="text-base font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500">Blog Page</a>
+                                    </li>
+                                    <li>
+                                        <a href="faq.html" class="text-base font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500">FAQ</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html" class="text-base font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="forget-password.html" class="text-base font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500">Forget Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="404.html" class="text-base font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500">404 Page</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="pricing.html" class="text-base font-Gilroy font-normal text-SecondaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500 pl-10">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden lg:block">
+                        <a href="sign-in.html" class="font-Gilroy text-base leading-7 font-semibold text-SecondaryColor hover:text-btnBg hover:transition hover:ease-in-out hover:duration-500">Log In</a>
+                        <a href="sign-up.html" class="inline-block text-base leading-7 font-semibold font-Gilroy text-white bg-primaryColor px-6 py-2 rounded-100 ml-5 hover:bg-btnBg2 hover:text-primaryColor hover:transition hover:ease-in-out hover:duration-500">Get Started</a>
+                    </div>
+                </div>
+                
+                <div x-show="open" 
+                x-transition:enter="transition ease-out duration-500"
+                x-transition:enter-start="opacity-0 transform -translate-y-2"
+                x-transition:enter-end="opacity-100 transform translate-y-0"
+                x-transition:leave="transition ease-in duration-500"
+                x-transition:leave-start="opacity-100 transform translate-y-0"
+                x-transition:leave-end="opacity-0 transform -translate-y-0"
+                class="lg:hidden rounded-20 mx-4 mt-5 transition-opacity transition-height duration-500 ease-in-out overflow-hidden absolute inset-x-0 top-16 z-20 bg-primaryColor">
+                    <div class="px-6 py-6 space-y-1 flex justify-between flex-col">
+                        <div>
+                            <ul class="dropdown flex flex-wrap flex-col md:justify-center justify-start">
+                                <li class="pb-5 lg:px-0 md:px-5"><a href="index.html" class="text-lg font-Gilroy font-normal text-white hover:text-bg hover:transition hover:ease-in-out hover:duration-500">Home</a></li>
+                                <li class="pb-5 lg:px-0 md:px-5"><a href="about.html" class="text-lg font-Gilroy font-normal text-white hover:text-bg hover:transition hover:ease-in-out hover:duration-500">About us</a></li>
+                                <li class="pb-5 lg:px-0 md:px-5"><a href="blog.html" class="text-lg font-Gilroy font-normal text-white hover:text-bg hover:transition hover:ease-in-out hover:duration-500">Blog</a></li>
+                                <li onclick="toggleDropdown()" class="relative group pb-5 lg:px-0 md:px-5" id="dropdownBtn">
+                                    <div class="flex justify-between items-center">
+                                        <a href="#" class="inline-flex pr-2 text-lg font-Gilroy font-normal text-white hover:text-bg hover:transition hover:ease-in-out hover:duration-500">Page</a>
+                                        <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+                                            <path d="M1.5 1L5.5 5L9.5 1" stroke="white" class="group-hover:stroke-PalatinateBlue" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <!-- Dropdown content -->
+                                    <ul id="dropdownMenu" class="w-full mt-5 bg-bg rounded-md shadow-2xl hidden py-4 group-hover:block overflow-hidden">
+                                        <!-- Dropdown items -->
+                                        <li><a href="blog-details.html" class="text-lg font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-spanBg hover:transition hover:ease-in-out hover:duration-500">Blog Page</a></li>
+                                        <li><a href="faq.html" class="text-lg font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-spanBg hover:transition hover:ease-in-out hover:duration-500">FAQ</a></li>
+                                        <li><a href="contact.html" class="text-lg font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-spanBg hover:transition hover:ease-in-out hover:duration-500">Contact Us</a></li>
+                                        <li><a href="forget-password.html" class="text-lg font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-spanBg hover:transition hover:ease-in-out hover:duration-500">Forget Password</a></li>
+                                        <li><a href="404.html" class="text-lg font-medium font-Gilroy block px-5 py-3 text-primaryColor hover:text-spanBg hover:transition hover:ease-in-out hover:duration-500">404 Page</a></li>
+                                    </ul>
+                                </li>
+                                <li class="lg:px-0 md:px-5"><a href="pricing.html" class="text-lg font-Gilroy font-normal text-white hover:text-bg hover:transition hover:ease-in-out hover:duration-500">Pricing</a></li>
+                            </ul>
+                        </div>
+                        <div class="pt-10 md:block hidden mx-0 md:mx-auto">
+                            <a href="sign-in.html" class="text-lg font-semibold font-Gilroy text-white hover:text-btnBg hover:transition hover:ease-in-out hover:duration-300">Sign In</a>
+                            <a href="sign-up.html" class="text-lg font-semibold inline-block font-Gilroy text-primaryColor px-6 py-2 bg-white rounded-100 ml-5 hover:bg-btnBg hover:transition hover:ease-in-out hover:duration-500">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Header Area Start Here --> 
+
+    <!-- Banner Area Start Here -->
+    <section class="md:mt-16 mt-11">
+        <div class="container">
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="flex xl:flex-row flex-col justify-between items-center md:gap-20 gap-10">
+                <div class="xl:w-588 w-full">
+                    <span class="bg-btnBg bg-opacity-15 py-1.5 px-4 rounded-100 font-Gilroy font-semibold text-sm leading-6 text-btnBg">Finance Solutions for You</span>
+                    <h1 class="pt-4 font-Gilroy font-bold md:text-80xl text-6xl leading-58 md:leading-84 text-primaryColor">Maximize <span class="inline-block absolute xl:top-[5.2rem] md:top-14 top-12 xl:left-[30%] lg:left-[37%] md:left-[50%] left-[67%]"><img class="md:w-auto w-20" src="assets/img/homePage/Shapes.svg" alt=""></span>
+                        <br/>Your <span class="relative inline-block text-spanColor">Financial <span class=""><img class="absolute left-0 right-0 mx-auto -bottom-1 h-auto text-spanColor" src="assets/img/homePage/blue-line.svg" alt=""></span></span> Potential
+                    </h1>
+                    <p class="font-Gilroy font-normal text-lg leading-30 md:pt-6 pt-3 md:w-519 w-full">Welcome to FinSuite, where financial management meets simplicity and efficiency.</p>
+                    <a href="#" onclick="event.preventDefault()" class="md:mt-12 mt-8 md:inline-block block text-center text-lg leading-30 font-semibold font-Gilroy text-white bg-primaryColor px-12 py-5 rounded-100 hover:bg-btnBg2 hover:text-primaryColor hover:transition hover:ease-in-out hover:duration-500">Get Started</a>
+                </div>
+                <div class="xl:w-630 w-full">
+                    <img class="xl:w-auto w-full" src="assets/img/homePage/banner.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Area End Here -->
+
+    <!-- Promo Area Start Here -->
+     <section class="bg-bg md:mt-28 mt-8">
+        <div class="container">
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="lg:w-725 w-full mx-auto md:py-12 py-8">
+                <h2 class="text-center font-Gilroy font-semibold text-lg leading-7"><span class="inline-block text-spanColor">Trusted by</span> users across the platform</h2>
+                <div class="grid md:grid-cols-3 grid-cols-1 mt-5 gap-12">
+                    <div class="flex md:justify-normal justify-center gap-3.5 items-center md:mt-0 mt-5">
+                        <h2 class="font-Gilroy font-semibold text-5xl leading-40 text-primaryColor">4.9</h2>
+                        <div>
+                            <span class="flex gap-1 font-Gilroy font-medium text-lg leading-30 text-SecondaryColor"><img src="assets/img/homePage/promo-Logo.svg" alt="">Producthunt</span>
+                            <img class="pt-1" src="assets/img/homePage/red-stars.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="flex md:justify-normal justify-center gap-3.5 items-center">
+                        <h2 class="font-Gilroy font-semibold text-5xl leading-40 text-primaryColor">4.8</h2>
+                        <div>
+                            <span class="flex gap-1 font-Gilroy font-medium text-lg leading-30 text-SecondaryColor"><img src="assets/img/homePage/google.svg" alt="">Chrome store</span>
+                            <img class="pt-1" src="assets/img/homePage/yellow-stars.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="flex md:justify-normal justify-center gap-3.5 items-center">
+                        <h2 class="font-Gilroy font-semibold text-5xl leading-40 text-primaryColor">4.8</h2>
+                        <div>
+                            <span class="flex gap-1 font-Gilroy font-medium text-lg leading-30 text-SecondaryColor"><img src="assets/img/homePage/green-star.svg" alt="">Trustpilot</span>
+                            <img class="pt-1" src="assets/img/homePage/green-stars.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+    <!-- Promo Area End Here -->
+
+    <!-- Financial Area Start Here -->
+    <section class="xl:mt-36 mt-16">
+        <div class="container">
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="lg:w-737 w-full mx-auto">
+                <h2 class="font-Gilroy font-bold md:text-7xl text-38xl leading-48 md:leading-64 text-primaryColor text-center"><span class="inline-block text-spanColor">Empower</span> Your Financial Future with us</h2>
+            </div>
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="md:mt-16 mt-8 bg-bg md:rounded-50 rounded-30 lg:py-20 py-10 lg:px-8 px-4">
+                <div class="flex xl:flex-row flex-col justify-between md:gap-12 gap-8 items-center">
+                    <div class="xl:w-630 w-full">
+                        <img class="xl:w-auto w-full" src="assets/img/homePage/balance.png" alt="">
+                    </div>
+                    <div class="xl:w-534 w-full"> 
+                        <h2 class="font-Gilroy font-bold md:text-54xl text-4xl leading-40 md:leading-58 text-primaryColor">Comprehensive Financial <span class="text-spanColor">Analytics</span> Dashboard</h2>
+                        <p class="font-Gilroy font-normal md:text-lg text-base leading-30 text-SecondaryColor pt-4">Gain real-time visibility into your financial performance with intuitive dashboards.</p>
+                        <hr class="w-full border border-border md:my-9 my-8"/>
+                        <div class="flex md:flex-row flex-col md:gap-14 gap-5">
+                            <ul>
+                                <li class="flex gap-2 font-Gilroy font-medium text-lg leading-30 text-primaryColor"><img src="assets/img/homePage/check.svg" alt="">Keep tracking balance</li>
+                                <li class="flex gap-2 font-Gilroy font-medium text-lg leading-30 text-primaryColor pt-5"><img src="assets/img/homePage/check.svg" alt="">Receive money easily</li>
+                            </ul>
+                            <ul>
+                                <li class="flex gap-2 font-Gilroy font-medium text-lg leading-30 text-primaryColor"><img src="assets/img/homePage/check.svg" alt="">Send money easily</li>
+                                <li class="flex gap-2 font-Gilroy font-medium text-lg leading-30 text-primaryColor pt-5"><img src="assets/img/homePage/check.svg" alt="">Convert currency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="mt-9 bg-bg md:rounded-50 rounded-30 lg:py-20 py-10 lg:px-12 px-4">
+                <div class="flex xl:flex-row flex-col-reverse justify-between md:gap-12 gap-8 items-center">
+                    <div class="xl:w-534 w-full"> 
+                        <h2 class="font-Gilroy font-bold md:text-54xl text-4xl leading-40 md:leading-58 text-primaryColor"><span class="text-spanColor">Track</span> Your all the Expense Easily</h2>
+                        <p class="font-Gilroy font-normal text-lg leading-30 text-SecondaryColor pt-4">Effortlessly monitor and manage all your expenses with our intuitive tracking system. Stay on top of your finances by easily recording and categorizing expenses, ensuring you have a clear overview of your spending habits.</p>
+                        <div class="mt-9">
+                            <a href="#" onclick="event.preventDefault()" class="md:inline-block block text-center text-lg leading-30 font-semibold font-Gilroy text-white bg-primaryColor px-12 py-5 rounded-100 hover:bg-btnBg2 hover:text-primaryColor hover:transition hover:ease-in-out hover:duration-500">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="xl:w-630 w-full">
+                        <img class="xl:w-auto w-full" src="assets/img/homePage/icloude.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Financial Area End Here -->
+
+    <!-- Globe Area Start Here -->
+    <section class="lg:mt-36 mt-16">
+        <div class="container">
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="lg:w-570 w-full mx-auto">
+                <h2 class="font-Gilroy font-bold md:text-7xl text-38xl leading-48 md:leading-64 text-primaryColor text-center"><span class="inline-block text-spanColor">Send Money</span> Across the Globe</h2>
+                <p class="font-Gilroy font-normal text-lg leading-30 text-SecondaryColor pt-4 text-center">Experience seamless global money transfers with our cutting-edge platform. Send money across continents securely.</p>
+            </div>
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="md:mt-16 mt-8 grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7">
+                <div>
+                    <div class="bg-spanColor bg-opacity-15 pt-10 rounded-30">
+                        <img class="mx-auto" src="assets/img/homePage/globe/card-1.png" alt="">
+                    </div>
+                    <div class="mt-7">
+                        <h2 class="text-center font-Gilroy font-bold text-3.5xl leading-36 text-primaryColor">Send 100+ Country</h2>
+                        <p class="font-Gilroy font-normal text-base leading-7 text-SecondaryColor pt-4 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-btnBg2 bg-opacity-15 p-1 rounded-30">
+                        <img class="mx-auto" src="assets/img/homePage/globe/card.png" alt="">
+                    </div>
+                    <div class="mt-7">
+                        <h2 class="text-center font-Gilroy font-bold text-3.5xl leading-36 text-primaryColor">Convert 100+ Currency</h2>
+                        <p class="font-Gilroy font-normal text-base leading-7 text-SecondaryColor pt-4 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-btnBg bg-opacity-15 pt-10 rounded-30">
+                        <img class="mx-auto" src="assets/img/homePage/globe/card-2.png" alt="">
+                    </div>
+                    <div class="mt-7">
+                        <h2 class="text-center font-Gilroy font-bold text-3.5xl leading-36 text-primaryColor">Unlimited Transactions</h2>
+                        <p class="font-Gilroy font-normal text-base leading-7 text-SecondaryColor pt-4 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Globe Area End Here -->
+
+    <!-- Financial Area Start Here -->
+    <section class="lg:mt-36 mt-16">
+        <div class="container">
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="lg:w-737 w-full mx-auto">
+                <h2 class="font-Gilroy font-bold md:text-7xl text-38xl leading-48 md:leading-64 text-primaryColor text-center"><span class="inline-block text-spanColor">Empower</span> Your Financial Future with us</h2>
+            </div>
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="md:mt-16 mt-8 bg-bg md:rounded-50 rounded-30 lg:py-20 py-10 lg:px-12 px-4">
+                <div class="flex xl:flex-row flex-col justify-between gap-12 items-center">
+                    <div class="xl:w-534 w-full">
+                        <img class="xl:w-auto w-full" src="assets/img/homePage/empower.png" alt="">
+                    </div>
+                    <div class="xl:w-534 w-full"> 
+                        <h2 class="font-Gilroy font-bold md:text-54xl text-4xl leading-40 md:leading-58 text-primaryColor">Achieve Financial <span class="text-spanColor">Excellence</span></h2>
+                        <p class="font-Gilroy font-normal text-lg leading-30 text-SecondaryColor pt-4">Effortlessly add your credit or debit card with convenience and simplicity. Our streamlined process makes it easy.</p>
+                        <div class="flex xl:flex-row flex-col gap-5 mt-8">
+                            <img class="w-16" src="assets/img/homePage/receive.svg" alt="">
+                            <div>
+                                <h2 class="font-Gilroy font-bold text-xl leading-30 text-primaryColor">Receive Money from Card</h2>
+                                <p class="font-Gilroy font-normal text-base leading-30 text-SecondaryColor pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+                            </div>
+                        </div>
+                        <div class="flex xl:flex-row flex-col gap-5 mt-4">
+                            <img class="w-16" src="assets/img/homePage/send.svg" alt="">
+                            <div>
+                                <h2 class="font-Gilroy font-bold text-xl leading-30 text-primaryColor">Send Money from Card</h2>
+                                <p class="font-Gilroy font-normal text-base leading-30 text-SecondaryColor pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="mt-9 bg-bg md:rounded-50 rounded-30 lg:py-20 py-10 lg:px-12 px-4">
+                <div class="flex xl:flex-row flex-col justify-between gap-12 items-center">
+                    <div class="xl:w-534 w-full"> 
+                        <h2 class="font-Gilroy font-bold md:text-54xl text-4xl leading-40 md:leading-58 text-primaryColor"><span class="text-spanColor">Integrate</span> With Your Favorite Tools</h2>
+                        <p class="font-Gilroy font-normal text-lg leading-30 text-SecondaryColor pt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                        <div class="mt-9">
+                            <a href="#"  onclick="event.preventDefault()" class="md:inline-block block text-center text-lg leading-30 font-semibold font-Gilroy text-white bg-primaryColor px-12 py-5 rounded-100 hover:bg-btnBg2 hover:text-primaryColor hover:transition hover:ease-in-out hover:duration-500">Explore Integration</a>
+                        </div>
+                    </div>
+                    <div class="xl:w-588 w-full">
+                        <img class="xl:w-auto w-full" src="assets/img/homePage/integrate.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Financial Area End Here -->
+
+    <!-- CTA Area Start Here -->
+     <section class="lg:mt-36 mt-16">
+        <div class="container">
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="bg-blueBg lg:rounded-50 rounded-30 lg:pr-12">
+                <div class="flex lg:flex-row flex-col-reverse justify-between lg:items-center gap-8">
+                    <div class="relative">
+                        <img class="rounded-tl-20 lg:w-auto w-full" src="assets/img/homePage/promo.png" alt="">
+                        <div class="absolute bg-bgCTA xl:w-534 w-full h-full top-0 lg:rounded-t-50 rounded-t-30 lg:rounded-bl-50 rounded-bl-30 lg:rounded-none rounded-30 opacity-30"></div>
+                    </div>
+                    <div class="lg:w-630 w-full lg:px-0 px-4 lg:pt-0 pt-11">
+                        <h2 class="font-Gilroy font-semibold md:text-7xl text-38xl leading-48 md:leading-64 text-white text-left">Ready to Run your Business <span class="relative inline-block text-btnBg2">Better<span class=""><img class="absolute left-0 right-0 mx-auto -bottom-2 h-auto text-btnBg2" src="assets/img/homePage/green-line.svg" alt=""></span></span> with us</h2>
+                        <p class="font-Gilroy font-normal text-lg leading-30 text-white text-opacity-75 pt-4">Welcome to FinSuite, where financial management meets simplicity and efficiency.</p>
+                        <div class="mt-9">
+                            <a href="#"  onclick="event.preventDefault()" class="md:inline-block block text-center text-lg leading-30 font-semibold font-Gilroy text-white bg-spanColor px-12 py-5 rounded-100 hover:bg-btnBg2 hover:text-primaryColor hover:transition hover:ease-in-out hover:duration-500">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid lg:grid-cols-2 grid-cols-1 gap-7 mt-7">
+                <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-offset="20"
+                data-aos-once="true"
+                class="bg-btnBg lg:rounded-50 rounded-30 lg:py-16 py-11 lg:px-12 px-4">
+                    <img class="w-20" src="assets/img/homePage/chat.png" alt="">
+                    <h2 class="md:text-54xl text-38xl leading-44 md:leading-58 font-Gilroy font-bold text-white pt-8">Live Chat</h2>
+                    <p class="pt-4 font-Gilroy font-normal text-lg leading-30 text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="mt-9">
+                        <a href="#"  onclick="event.preventDefault()" class="md:inline-block block text-center text-lg leading-30 font-semibold font-Gilroy text-white border border-white bg-transparent px-12 py-5 rounded-100 hover:bg-btnBg2 hover:border-transparent hover:text-primaryColor hover:transition hover:ease-in-out hover:duration-500">Book a Call</a>
+                    </div>
+                </div>
+                <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-offset="20"
+                data-aos-once="true"
+                class="bg-btnBg2 lg:rounded-50 rounded-30 lg:py-16 py-11 lg:px-12 px-4">
+                    <img class="w-20" src="assets/img/homePage/demo.png" alt="">
+                    <h2 class="md:text-54xl text-38xl leading-44 md:leading-58 font-Gilroy font-bold text-primaryColor pt-8">Live Chat</h2>
+                    <p class="pt-4 font-Gilroy font-normal text-lg leading-30 text-primaryColor">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="mt-9">
+                        <a href="#"  onclick="event.preventDefault()" class="md:inline-block block text-center text-lg leading-30 font-semibold font-Gilroy text-primaryColor border border-primaryColor bg-transparent px-12 py-5 rounded-100 hover:bg-btnBg hover:border-transparent hover:text-white hover:transition hover:ease-in-out hover:duration-500">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+    <!-- CTA Area End Here -->
+
+    <!-- Footer Area Start Here -->
+    <footer class="md:mt-36 mt-20 md:mb-10 mb-5">
+        <div class="container">
+            <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-offset="20"
+                data-aos-once="true"
+            class="flex flex-wrap lg:flex-row flex-col-reverse justify-between">
+                <div class="lg:w-413 w-auto lg:mt-0 mt-10">
+                    <a href="index.html">
+                        <img class="w-44" src="assets/img/logo.svg" alt="">
+                    </a>
+                    <p class="text-secondaryColor pt-5 font-Gilroy font-normal text-lg leading-30">Welcome to FinSuite, where financial management meets simplicity and efficiency.</p>
+                    <div class="pt-5 flex items-center gap-3">
+                        <a href="https://www.facebook.com/" target="_blank">
+                            <svg class="group border border-divided bg-primaryColor rounded-full " xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                <path d="M21.4758 18.8746L21.8908 16.341H19.2968V14.6969C19.2968 14.0039 19.659 13.3279 20.8209 13.3279H22V11.1711C22 11.1711 20.9301 11 19.9069 11C17.7708 11 16.3746 12.2136 16.3746 14.4103V16.3414H14V18.875H16.3746V25H19.2968V18.875L21.4758 18.8746Z" fill="white"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <svg class="group border border-divided bg-white rounded-full hover:bg-primaryColor hover:transition-all hover: ease-in-out hover:duration-500" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                <path d="M18.0001 11C16.099 11 15.8606 11.0081 15.114 11.0421C14.3689 11.0761 13.86 11.1945 13.4148 11.3675C12.9544 11.5464 12.5641 11.7857 12.1749 12.1749C11.7857 12.564 11.5464 12.9545 11.3675 13.4148C11.1944 13.86 11.0761 14.3689 11.0421 15.114C11.008 15.8606 11 16.099 11 18.0001C11 19.9012 11.008 20.1396 11.0421 20.8863C11.0761 21.6313 11.1944 22.1402 11.3675 22.5854C11.5464 23.0458 11.7858 23.4361 12.1749 23.8253C12.5641 24.2145 12.9544 24.4539 13.4148 24.6328C13.86 24.8058 14.3689 24.9241 15.114 24.9581C15.8606 24.9922 16.099 25.0002 18.0001 25.0002C19.9012 25.0002 20.1396 24.9922 20.8863 24.9581C21.6313 24.9241 22.1402 24.8058 22.5854 24.6328C23.0458 24.4539 23.4361 24.2145 23.8253 23.8253C24.2145 23.4361 24.4539 23.0458 24.6328 22.5854C24.8058 22.1402 24.9241 21.6313 24.9581 20.8863C24.9922 20.1396 25.0002 19.9012 25.0002 18.0001C25.0002 16.099 24.9922 15.8606 24.9581 15.114C24.9241 14.3689 24.8058 13.86 24.6328 13.4148C24.4539 12.9545 24.2145 12.564 23.8253 12.1749C23.4361 11.7857 23.0458 11.5464 22.5854 11.3675C22.1402 11.1945 21.6313 11.0761 20.8863 11.0421C20.1396 11.0081 19.9012 11 18.0001 11ZM18.0001 12.2613C19.8692 12.2613 20.0906 12.2684 20.8288 12.3021C21.5113 12.3332 21.8819 12.4473 22.1286 12.5431C22.4553 12.6701 22.6885 12.8218 22.9335 13.0667C23.1784 13.3117 23.3301 13.5449 23.4571 13.8716C23.553 14.1183 23.667 14.489 23.6981 15.1715C23.7318 15.9096 23.739 16.131 23.739 18.0001C23.739 19.8692 23.7318 20.0906 23.6981 20.8288C23.667 21.5113 23.553 21.8819 23.4571 22.1286C23.3301 22.4553 23.1784 22.6885 22.9335 22.9335C22.6885 23.1784 22.4553 23.3301 22.1286 23.4571C21.8819 23.553 21.5113 23.667 20.8288 23.6981C20.0907 23.7318 19.8694 23.739 18.0001 23.739C16.1309 23.739 15.9095 23.7318 15.1715 23.6981C14.4889 23.667 14.1183 23.553 13.8717 23.4571C13.5449 23.3301 13.3117 23.1784 13.0668 22.9335C12.8218 22.6885 12.6701 22.4553 12.5431 22.1286C12.4473 21.8819 12.3332 21.5113 12.3021 20.8288C12.2684 20.0906 12.2613 19.8692 12.2613 18.0001C12.2613 16.131 12.2684 15.9096 12.3021 15.1715C12.3332 14.4889 12.4473 14.1183 12.5431 13.8717C12.6701 13.5449 12.8218 13.3117 13.0667 13.0668C13.3117 12.8218 13.5449 12.6701 13.8716 12.5431C14.1183 12.4473 14.489 12.3332 15.1715 12.3021C15.9096 12.2684 16.131 12.2613 18.0001 12.2613" fill="black" class="group-hover:fill-white group-hover:transition-all group-hover: ease-in-out group-hover:duration-500"/>
+                                <path d="M18.0004 20.3339C16.7117 20.3339 15.667 19.2892 15.667 18.0006C15.667 16.7118 16.7117 15.6672 18.0004 15.6672C19.2891 15.6672 20.3338 16.7118 20.3338 18.0006C20.3338 19.2892 19.2891 20.3339 18.0004 20.3339ZM18.0004 14.4059C16.0151 14.4059 14.4058 16.0152 14.4058 18.0006C14.4058 19.9858 16.0151 21.5952 18.0004 21.5952C19.9857 21.5952 21.5951 19.9858 21.5951 18.0006C21.5951 16.0152 19.9857 14.4059 18.0004 14.4059ZM22.5771 14.2639C22.5771 14.7278 22.201 15.1039 21.7371 15.1039C21.2732 15.1039 20.8971 14.7278 20.8971 14.2639C20.8971 13.7999 21.2732 13.4238 21.7371 13.4238C22.201 13.4238 22.5771 13.7999 22.5771 14.2639Z" fill="black" class="group-hover:fill-white group-hover:transition-all group-hover: ease-in-out group-hover:duration-500"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="https://twitter.com/" target="_blank">
+                            <svg class="group border border-divided bg-white rounded-full hover:bg-primaryColor hover:transition-all hover: ease-in-out hover:duration-500" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                <path d="M25 13.4205C24.4758 13.6655 23.9197 13.8263 23.3503 13.8975C23.9434 13.5226 24.3988 12.9289 24.6132 12.2215C24.0494 12.5744 23.4326 12.823 22.7893 12.9567C22.2654 12.3679 21.5189 12 20.6928 12C19.1065 12 17.8204 13.3564 17.8204 15.0293C17.8204 15.2668 17.8458 15.498 17.8948 15.7198C15.5077 15.5934 13.3913 14.3874 11.9746 12.5545C11.7274 13.002 11.5858 13.5224 11.5858 14.0775C11.5858 15.1285 12.0929 16.0557 12.8635 16.599C12.4074 16.584 11.9613 16.454 11.5625 16.2201C11.5624 16.2328 11.5624 16.2454 11.5624 16.2582C11.5624 17.726 12.5524 18.9504 13.8663 19.2287C13.4434 19.35 12.9997 19.3678 12.5693 19.2806C12.9347 20.4841 13.9955 21.3599 15.2523 21.3845C14.2693 22.1969 13.0308 22.6813 11.6852 22.6813C11.4533 22.6813 11.2247 22.6669 11 22.6389C12.2711 23.4985 13.7809 24 15.4029 24C20.6861 24 23.5751 19.3838 23.5751 15.3807C23.5751 15.2493 23.5723 15.1186 23.5668 14.9887C24.1291 14.56 24.6144 14.0289 25 13.4205Z" fill="black" class="group-hover:fill-white group-hover:transition-all group-hover: ease-in-out group-hover:duration-500"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="https://www.linkedin.com/" target="_blank">
+                            <svg class="group border border-divided bg-white rounded-full hover:bg-primaryColor hover:transition-all hover: ease-in-out hover:duration-500" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2003 15.8783H18.8001V17.1733C19.1746 16.4285 20.135 15.7593 21.5777 15.7593C24.3434 15.7593 25 17.2419 25 19.9621V25H22.2V20.5816C22.2 19.0325 21.8255 18.1589 20.8721 18.1589C19.5498 18.1589 19.0003 19.1004 19.0003 20.5809V25H16.2003V15.8783ZM11.399 24.881H14.199V15.7593H11.399V24.881ZM14.6001 12.785C14.6002 13.0197 14.5537 13.2521 14.4632 13.4686C14.3727 13.6852 14.2401 13.8816 14.073 14.0464C13.7345 14.3828 13.2763 14.5712 12.799 14.57C12.3226 14.5697 11.8654 14.3818 11.5264 14.0471C11.3599 13.8817 11.2278 13.6851 11.1374 13.4685C11.0471 13.2519 11.0004 13.0197 11 12.785C11 12.3111 11.189 11.8575 11.5271 11.5229C11.8658 11.1877 12.3232 10.9998 12.7997 11C13.2771 11 13.7349 11.1883 14.073 11.5229C14.4104 11.8575 14.6001 12.3111 14.6001 12.785Z" fill="black" class="group-hover:fill-white group-hover:transition-all group-hover: ease-in-out group-hover:duration-500"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-4 grid-cols-2 gap-10 xl:w-650 lg:w-570 w-auto">
+                    <div>
+                        <h5 class="font-Gilroy font-semibold text-xl leading-8 text-primaryColor">Company</h5>
+                        <ul class="mt-5">
+                            <li><a href="index.html" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Home</a></li>
+                            <li><a href="about.html" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">About us</a></li>
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Affiliate Program</a></li>
+                            <li><a href="career.html" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-Gilroy font-semibold text-xl leading-8 text-primaryColor">Product</h5>
+                        <ul class="mt-5">
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Overview</a></li>
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Features</a></li>
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Integrations</a></li>
+                            <li><a href="pricing.html" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-Gilroy font-semibold text-xl leading-8 text-primaryColor">Resources</h5>
+                        <ul class="mt-5">
+                            <li><a href="blog.html" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Blog</a></li>
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Podcast</a></li>
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Webinars</a></li>
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Press</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-Gilroy font-semibold text-xl leading-8 text-primaryColor">Support</h5>
+                        <ul class="mt-5">
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Request a Demo</a></li>
+                            <li><a href="contact.html" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Contact Us</a></li>
+                            <li><a href="#"  onclick="event.preventDefault()" class="font-Gilroy font-normal text-base leading-7 text-secondaryColor pt-3 block hover:text-btnBg hover:transition-all hover:ease-in-out hover:duration-500">Report a Bug</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            data-aos-once="true"
+            class="lg:mt-24 mt-10">
+                <div class="bg-bg flex md:flex-row flex-col justify-between py-3 px-5 rounded-24">
+                    <div>
+                        <p class="font-Gilroy font-normal text-base leading-7 text-secondaryColor text-center">&copy; 2024 All Rights Reserved</p>
+                    </div>
+                    <div class="flex md:justify-end justify-center gap-5 md:mt-0 mt-5">
+                        <a href="#" onclick="event.preventDefault()" class="text-secondaryColor font-Gilroy font-normal text-base leading-8">Terms & Conditions</a>
+                        <a href="#" onclick="event.preventDefault()" class="text-secondaryColor font-Gilroy font-normal text-base leading-8">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End Here -->
+
+    <script src="assets/js/alpine.min.js"  defer></script>
+    <!-- AOS Animation Script -->
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/aos_script.js"></script>
+</body>
+</html>
